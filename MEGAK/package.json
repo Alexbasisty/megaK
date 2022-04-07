@@ -1,0 +1,13 @@
+{
+  "name": "name",
+  "version": "1.0.0",
+  "description": "Nauka JS",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "timers": "^0.1.1",
+    "timers-promises": "1.0.1"
+  }
+}
