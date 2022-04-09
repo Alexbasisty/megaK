@@ -4,17 +4,19 @@ const badMoodBtn = document.querySelector('.bad-mood');
 const goodMoodInfo = document.querySelector('.good-mood-info');
 const badMoodInfo = document.querySelector('.bad-mood-info');
 
-// const moodStorage = localStorage.getItem('mood');
+const mood = localStorage.getItem('mood');
 
-// let { goodMoodCounter, badMoodCounter } = JSON.parse(moodStorage);
+if(!mood) {
+    const mood = {
+        goodMoodCounter: 0,
+        badMoodCounter: 0,
+    }
 
-// const mood = {
-//     goodMoodCounter,
-//     badMoodCounter,
-// }
+    localStorage.setItem('mood', JSON.stringify(mood))
+}
 
-let goodMoodCounter = Number(localStorage.getItem('goodMood'));
-let badMoodCounter = Number(localStorage.getItem('badMood'));
+let { goodMoodCounter, badMoodCounter } = JSON.parse(localStorage.getItem('mood'));
+
 goodMoodInfo.innerText = goodMoodCounter;
 badMoodInfo.innerText = badMoodCounter;
 
@@ -22,11 +24,24 @@ badMoodInfo.innerText = badMoodCounter;
 goodMoodBtn.addEventListener('click', () => {
     goodMoodInfo.innerText = ++goodMoodCounter;
 
-    localStorage.setItem('goodMood', String(goodMoodCounter));
+    const mood = {
+        goodMoodCounter,
+        badMoodCounter,
+    }
+
+    localStorage.setItem('mood', JSON.stringify(mood));
 });
 
 badMoodBtn.addEventListener('click', () => {
     badMoodInfo.innerText = ++badMoodCounter;
-    localStorage.setItem('badMood', String(badMoodCounter));
+    
+    const mood = {
+        goodMoodCounter,
+        badMoodCounter,
+    }
+
+    console.log(badMoodCounter);
+
+    localStorage.setItem('mood', JSON.stringify(mood));
 });
 
