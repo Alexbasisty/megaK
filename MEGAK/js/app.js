@@ -1,22 +1,32 @@
-const btn = document.querySelector('.btn-toggle-color');
-const body = document.body;
-const counterH = document.querySelector('.counter-header');
+const goodMoodBtn = document.querySelector('.good-mood');
+const badMoodBtn = document.querySelector('.bad-mood');
 
-let counter = Number(localStorage.getItem('counter'));
-counterH.innerText = String(counter);
+const goodMoodInfo = document.querySelector('.good-mood-info');
+const badMoodInfo = document.querySelector('.bad-mood-info');
 
-const clicker = () => {
-    counterH.innerText = ++counter;
-    localStorage.setItem('counter', counter.toString());
-}
+// const moodStorage = localStorage.getItem('mood');
 
-const darkMode = () => {
-    const isDark = body.classList.toggle('dark-mode');
-    if(isDark) {
-        btn.innerText = 'Turn on lights'
-    } else {
-        btn.innerText = 'Make it dark!'
-    }
-    clicker();
-}
-btn.addEventListener('click', darkMode);
+// let { goodMoodCounter, badMoodCounter } = JSON.parse(moodStorage);
+
+// const mood = {
+//     goodMoodCounter,
+//     badMoodCounter,
+// }
+
+let goodMoodCounter = Number(localStorage.getItem('goodMood'));
+let badMoodCounter = Number(localStorage.getItem('badMood'));
+goodMoodInfo.innerText = goodMoodCounter;
+badMoodInfo.innerText = badMoodCounter;
+
+
+goodMoodBtn.addEventListener('click', () => {
+    goodMoodInfo.innerText = ++goodMoodCounter;
+
+    localStorage.setItem('goodMood', String(goodMoodCounter));
+});
+
+badMoodBtn.addEventListener('click', () => {
+    badMoodInfo.innerText = ++badMoodCounter;
+    localStorage.setItem('badMood', String(badMoodCounter));
+});
+
