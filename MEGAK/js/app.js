@@ -55,15 +55,11 @@ addBtn.addEventListener('click', () => {
 
     arr.push(num);
 
-    console.log(arr);
-
     localStorage.setItem('arr', JSON.stringify(arr));
 
     arr.forEach(elem => {
         res += elem;
     });
 
-
-    console.log(res);
     showNum.innerText = res;
 });
