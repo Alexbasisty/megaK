@@ -45,3 +45,25 @@ badMoodBtn.addEventListener('click', () => {
     localStorage.setItem('mood', JSON.stringify(mood));
 });
 
+const addBtn = document.querySelector('.add');
+const showNum = document.querySelector('.numb');
+
+addBtn.addEventListener('click', () => {
+    const arr = JSON.parse(localStorage.getItem('arr')) || [];
+    const num = Number(prompt('Podaj liczbe!'));
+    let res = 0;
+
+    arr.push(num);
+
+    console.log(arr);
+
+    localStorage.setItem('arr', JSON.stringify(arr));
+
+    arr.forEach(elem => {
+        res += elem;
+    });
+
+
+    console.log(res);
+    showNum.innerText = res;
+});
