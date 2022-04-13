@@ -1,14 +1,29 @@
-const shopBasket = new Basket();
+const basket = new Basket();
 
-const oranges = new Product('Pomarańcze LUZ', 7.55);
-const cucumbers = new Product('Ogórek duży', 8.20);
+const buyBtns = [...document.querySelectorAll('[data-name]')];
+const basketLi = document.querySelector('.basket-list');
 
-shopBasket.add(cucumbers);
-shopBasket.add(cucumbers);
-shopBasket.add(oranges);
+const createBasketUi = () => {
+    basketLi.innerText = '';
+    
+    for (const oneProductInfo of basket.getBasketSummary()) {
+        const listItem = document.createElement('li');
+        listItem.innerText = oneProductInfo;
+        basketLi.appendChild(listItem);        
+    }
+}
 
-console.log(shopBasket.getTotalValue());
-shopBasket.remove(2);
-shopBasket.showBasket();
+const addProductToBasket = event => {
+    const name = event.target.dataset.name;
+    const price = Number(event.target.dataset.price);
 
-console.log(shopBasket.getTotalValue());
+    const newProduct = new Product(name, price);
+    basket.add(newProduct);
+
+    createBasketUi();
+    basket.getBasketSummary()
+};
+
+for (const btn of buyBtns) {
+    btn.addEventListener('click', addProductToBasket);
+};

@@ -13,10 +13,9 @@ class Basket {
         return this.items.reduce((prev, product) => prev + product.price, 0)
     }
 
-    showBasket() {
-        this.items
+    getBasketSummary() {
+        return this.items
             .map((product, i) => `${i + 1} - ${product.name} - ${product.price.toFixed(2)}zł.`)
-            .forEach(item => console.log(item))
     }
 
     remove(no) {
