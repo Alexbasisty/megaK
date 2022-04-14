@@ -5,6 +5,10 @@ class Basket {
         this.totalValue = 0;
     }
 
+    clear() {
+        this.items = [];
+    }
+
     add(item) {
         this.items.push(item);
     } 
@@ -15,7 +19,12 @@ class Basket {
 
     getBasketSummary() {
         return this.items
-            .map((product, i) => `${i + 1} - ${product.name} - ${product.price.toFixed(2)}zł.`)
+            .map((product, i) => {
+                return {
+                    text: `${i + 1} - ${product.name} - ${product.price.toFixed(2)}zł.`,
+                    id: i + 1,
+                }
+            })
     }
 
     remove(no) {
