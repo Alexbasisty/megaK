@@ -51,3 +51,5 @@ const buyAllProducts = () => {
 }
 
 buyAllBtn.addEventListener('click', buyAllProducts);
+
+createBasketUi();
