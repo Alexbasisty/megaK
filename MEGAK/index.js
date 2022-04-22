@@ -1,7 +1,9 @@
-const { setTimeout } = require('timers-promises');
+const { setTimeout } = require("timers-promises");
 
 (async () => {
-    console.log('Hi');
-    await setTimeout(1000);
-    console.log('How\'re U doing?');
-})()
+  console.log("Hi");
+  await setTimeout(1000);
+  console.log("How're U doing?");
+})();
+
+tfhj;
