@@ -7,5 +7,7 @@
     },
     "parser": "babel-eslint",
     "extends": "airbnb",
-    "rules": {}
+    "rules": {
+        "quotes": [2, "single", { "avoidEscape": true }]
+    }
 }
