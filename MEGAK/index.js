@@ -1,36 +1,18 @@
-const { readFile } = require("fs");
-const { promisify } = require("util");
-const { lookup, promises } = require("dns");
+const { stringify } = require("querystring");
 
-console.log("Hello world");
+const { readFile, writeFile, appendFile } = require("fs").promises;
 
-const readFilePromised = promisify(readFile);
-const lookupPromise = promisify(lookup);
-
-const host = 'google.com';
-
-lookupPromise(host)
-  .then(data => console.log(data.address));
+const FILE_NAME = './data/hello.txt';
 
 (async () => {
   try {
-    const hostIP = await promises.lookup(host);
+    const data = (await readFile(FILE_NAME, 'utf-8')).split(';');
+  
+    const numberToMultiply = Number(data[-1]) || Number(data[data.length - 2]);
+    console.log(numberToMultiply);
 
-    console.log(hostIP.address);
+    await appendFile(FILE_NAME, `\n${(numberToMultiply * 2).toString()};`, 'utf-8');
   } catch (error) {
-    console.log('ooops', error);
+    console.log('Co jest?', error);
   }
 })();
-
-lookup(host, (err, data) => {
-  console.log(data);
-});
-
-// (async () => {
-//   try {
-//     const data = await readFilePromised("./index.js", "utf-8")
-//     console.log(data);    
-//   } catch (error) {
-//     console.log(error);
-//   }
-// })();
