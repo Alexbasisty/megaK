@@ -1,18 +1,42 @@
-const { stringify } = require("querystring");
+const { readFile, writeFile, stat, readdir } = require('fs').promises;
 
-const { readFile, writeFile, appendFile } = require("fs").promises;
+const FILE_NAME = './data/index1.json';
 
-const FILE_NAME = './data/hello.txt';
 
-(async () => {
-  try {
-    const data = (await readFile(FILE_NAME, 'utf-8')).split(';');
+
+try {
+  const showFiles = async path => {
+    const list = await readdir(path);
   
-    const numberToMultiply = Number(data[-1]) || Number(data[data.length - 2]);
-    console.log(numberToMultiply);
+    for(const item of list) {
+      console.log(item);
+      const recursePath = `${path}/${item}`
+      const itemStat = await stat(recursePath);
+      if(itemStat.isDirectory()) {
+        await showFiles(recursePath);
+      }
+    }
+  };
+  showFiles('.');
+  
+} catch (error) {
+  console.log('ooops');
+}
 
-    await appendFile(FILE_NAME, `\n${(numberToMultiply * 2).toString()};`, 'utf-8');
-  } catch (error) {
-    console.log('Co jest?', error);
-  }
-})();
+
+
+
+// (async () => {
+//   try {
+//     const data = JSON.parse(await readFile(FILE_NAME, "utf-8"));  
+//     const sum = JSON.stringify(data.reduce((prev, curr) => prev + curr, 0))
+    
+//     writeFile('./data/sum.txt', sum, 'utf-8')
+//   } catch (error) {
+//     if (error.code === 'ENOENT') {
+//       console.log('FIle name is not valid');
+//     } else {
+//       console.log('oh no, unknown error', error);      
+//     }
+//   }
+// })();
