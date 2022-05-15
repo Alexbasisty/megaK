@@ -1,26 +1,25 @@
+/* eslint-disable no-unused-vars */
 const { readFile, writeFile, stat, readdir } = require('fs').promises;
 
 const FILE_NAME = './data/index1.json';
 
-
-
 try {
-  const showFiles = async path => {
-    const list = await readdir(path);
+    const showFiles = async path => {
+        const list = await readdir(path);
   
-    for(const item of list) {
-      console.log(item);
-      const recursePath = `${path}/${item}`
-      const itemStat = await stat(recursePath);
-      if(itemStat.isDirectory()) {
-        await showFiles(recursePath);
-      }
-    }
-  };
-  showFiles('.');
+        for(const item of list) {
+            console.log(item);
+            const recursePath = `${path}/${item}`;
+            const itemStat = await stat(recursePath);
+            if(itemStat.isDirectory()) {
+                await showFiles(recursePath);
+            }
+        }
+    };
+    showFiles('.');
   
 } catch (error) {
-  console.log('ooops');
+    console.log('ooops');
 }
 
 
