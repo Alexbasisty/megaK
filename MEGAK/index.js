@@ -1,5 +1,5 @@
 const { watch } = require('chokidar');
-const commander = require('commander');
+// const commander = require('commander');
 const { readFile } = require('fs').promises;
 
 const readPath = (path) => {
