@@ -1,5 +1,13 @@
-'co się tu dzieje???';
+const fs = require('fs');
 
-'jakieś zmiany????';
+fs.access('./test.txt', (err) => {
+    console.log(err ? 'plik nie istnieje' : 'plik istnieje');
+});
 
-sdsf;
+// rename
+
+fs.rename('watchers.js', 'watcher.js', (err) => {
+    if (err) {
+        console.log('Błąd');
+    }
+});
