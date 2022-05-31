@@ -1,4 +1,5 @@
 /* eslint-disable no-shadow */
+const { createHmac, createDecipheriv, createCipheriv } = require('crypto');
 const { promisify } = require('util');
 const scrypt = promisify(require('crypto').scrypt);
 const randomBytes = promisify(require('crypto').randomBytes);
@@ -28,9 +29,16 @@ async function decryptText(text, password, salt, ivHex) {
     decrypted += decipher.final('utf-8');
 
     return decrypted;
+};
+
+function hash (hash, salt) {
+    return createHmac('sha512', salt)
+        .update(hash)
+        .digest('hex');
 }
 
 module.exports = {
     encryptText,
     decryptText,
+    hash,
 };

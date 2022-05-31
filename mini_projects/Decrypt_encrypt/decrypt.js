@@ -1,6 +1,6 @@
 const { readFile, writeFile } = require('fs').promises;
-const { decryptText } = require('./cipher');
-const { SALT } = require('./constants');
+const { decryptText, hash } = require('./cipher');
+const { SALT, HASH_SALT } = require('./constants');
 
 const [,, fileName, pwd] = process.argv;
 
@@ -10,5 +10,12 @@ const [,, fileName, pwd] = process.argv;
 
     const decrypted = await decryptText(encrypted.encrypted, pwd, SALT, encrypted.iv);
 
-    await writeFile(fileName, decrypted, 'utf-8');
+    const decryptedHash = hash(decrypted, HASH_SALT);
+
+    if (decryptedHash === encrypted.hash) {
+        await writeFile(fileName, decrypted, 'utf-8');
+    } else {
+        console.error('Coś nie tak wprowadzono!');
+    }
+
 })();
