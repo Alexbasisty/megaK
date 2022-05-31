@@ -1,0 +1,34 @@
+{
+  "name": "hometasks",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.12",
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint-config-airbnb": "^19.0.4"
+  },
+  "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/commander": "^2.12.2",
+    "@types/lodash": "^4.14.182",
+    "bcrypt": "^5.0.1",
+    "chalk": "^5.0.1",
+    "chokidar": "^3.5.3",
+    "commander": "^9.2.0",
+    "lodash": "^4.17.15"
+  },
+  "babel": {},
+  "eslintConfig": {
+    "parser": "@babel/es-lint-parser",
+    "parserOptions": {
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
+    }
+  }
+}
