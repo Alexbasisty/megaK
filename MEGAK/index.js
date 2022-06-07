@@ -1,3 +1,12 @@
-const buff = Buffer.alloc(20);
-buff.write('Hello World', 'utf-8');
-console.log(buff);
+const { createServer } = require('http');
+
+const server = createServer();
+
+server
+    .on('request', (req, res) => {
+        res.writeHead(200, {
+            'Content-Type': 'text/html',
+        });
+        res.end('<h1>Привіт, Україна</h1>');
+    })
+    .listen(3000, 'localhost');
