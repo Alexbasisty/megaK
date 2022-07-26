@@ -1,9 +1,14 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const { cookieRouter } = require('./routes/cookieRouter');
 
 const app = express();
 
-app.get('/', () => {
-    console.log('Hello, World!');
-})
+app.use(cookieParser());
 
-app.listen(3000);
+app.use(express.json());
+app.use(express.static('public'));
+
+app.use('/cookie', cookieRouter);
+
+app.listen(3000, 'localhost');
