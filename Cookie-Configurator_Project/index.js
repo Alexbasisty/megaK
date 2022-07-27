@@ -2,9 +2,9 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 
-const homeRouter = require('./routes/home');
-const configRouter = require('./routes/configurator');
-const orderRouter = require('./routes/order');
+const { homeRouter } = require('./routes/home');
+const { configRouter } = require('./routes/configurator');
+const { orderRouter } = require('./routes/order');
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.set('view engine', '.hbs');
 
 app.use('/', homeRouter);
 app.use('/configurator', configRouter);
-app.use('/oreder', orderRouter);
+app.use('/order', orderRouter);
 
 app.listen(3000, 'localhost');
 
