@@ -1,1 +1,9 @@
-<h1>Hello, World!</h1>
+{{#with person}}
+    <h1>Hello, {{ name }}! You are only {{ age }}</h1>
+{{/with}}
+
+<ul>
+{{#each person.days}}
+    <li>{{this}}</li>
+{{/each}}
+</ul>

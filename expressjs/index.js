@@ -17,7 +17,13 @@ app.set('view engine', '.hbs');
 
 app.use('/cookie', cookieRouter);
 app.get('/hi', (req, res) => {
-    res.render('home');
+    res.render('home', {
+        person: {
+            name: 'Alex',
+            age: '36',
+            days: [1, 2, 3, 4, 5, 5, 6, 7],
+        },
+    });
 });
 
 app.listen(3000, 'localhost');
