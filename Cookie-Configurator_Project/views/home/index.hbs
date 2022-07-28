@@ -11,5 +11,10 @@
     <a href="/configurator/add-addon/{{this.[0]}}">Add {{this.[0]}} for {{this.[1]}} PLN</a>
 {{/each}}
 
-{{> cookie-preview}}
-{{> addons}}
+
+{{#if cookie.base}}
+    {{> cookie-preview}}
+    {{> addons}}
+{{else}}
+    <p>Please select base to see its preview and summary</p>
+{{/if}}

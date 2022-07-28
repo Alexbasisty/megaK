@@ -6,12 +6,18 @@ const homeRouter = express.Router();
 
 homeRouter
     .get('/', (req, res) => {
-        const sum = handlebarsHelpers['find-price'](Object.entries(COOKIE_BASES), 'light')
-            + ['coconut', 'honey'].reduce((prev, curr) => prev + handlebarsHelpers['find-price'](Object.entries(COOKIE_ADDONS), curr), 0);
+        const { cookieBase } = req.cookies;
+
+        const sum = cookieBase
+            ?
+            (handlebarsHelpers['find-price'](Object.entries(COOKIE_BASES), cookieBase)
+                + ['coconut', 'honey'].reduce((prev, curr) => prev + handlebarsHelpers['find-price'](Object.entries(COOKIE_ADDONS), curr), 0))
+            :
+            0;
 
         res.render('home/index', {
             cookie: {
-                base: 'light',
+                base: cookieBase,
                 addons: ['coconut', 'honey'],
             },
             bases: Object.entries(COOKIE_BASES),
