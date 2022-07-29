@@ -3,20 +3,21 @@
 <h2>Select your cookie base</h2>
 
 {{#each bases}}
-    <a href="/configurator/select-base/{{this.[0]}}">Select {{this.[0]}} for {{this.[1]}} PLN</a>
+    <a href="/configurator/select-base/{{this.[0]}}" class="btn">Select {{this.[0]}} for {{this.[1]}} PLN</a>
 {{/each}}
 
 <h2>Select your favourite addons</h2>
 {{#each addons}}
-    {{#if (isNotInArray @root.cookie.addons this.[0])}}
-    <a href="/configurator/add-addon/{{this.[0]}}">Add {{this.[0]}} for {{this.[1]}} PLN</a>
-    {{/if}}
+    <a href="/configurator/add-addon/{{this.[0]}}" 
+    class="btn {{#if (isInArray @root.cookie.addons this.[0])}}btn-disabled{{/if}}">
+    Add {{this.[0]}} for {{this.[1]}} PLN</a>
 {{/each}}
 
 
 {{#if cookie.base}}
     {{> cookie-preview}}
     {{> addons}}
+    <a href="/order/summary" class="btn btn-basket">Order now!</a>
 {{else}}
     <p>Please select base to see its preview and summary</p>
 {{/if}}
