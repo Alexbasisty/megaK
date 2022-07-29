@@ -1,4 +1,5 @@
 const express = require('express');
+const { COOKIE_ADDONS } = require('../data/cookies-data');
 const { getAddonsFromRequest } = require('../utils/get-addons-from-request');
 
 const configRouter = express.Router();
@@ -16,7 +17,20 @@ configRouter
     .get('/add-addon/:addonName', (req, res) => {
         const { addonName } = req.params;
 
+        if (!COOKIE_ADDONS[addonName]) {
+            return res.render('error', {
+                description: `There is no such addon - ${addonName}`,
+            });
+        };
+
         const addons = getAddonsFromRequest(req);
+
+        if (addons.includes(addonName)) {
+            return res.render('error', {
+                description: `The ${addonName} already has been added, You cannot do this twice`,
+            });
+        }
+
         addons.push(addonName);
 
         res
