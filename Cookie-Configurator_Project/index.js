@@ -5,7 +5,7 @@ const hbs = require('express-handlebars');
 const { homeRouter } = require('./routes/home');
 const { configRouter } = require('./routes/configurator');
 const { orderRouter } = require('./routes/order');
-const { handlebarsHelpers } = require('./handlebars-helpers');
+const { handlebarsHelpers } = require('./utils/handlebars-helpers');
 
 const app = express();
 
