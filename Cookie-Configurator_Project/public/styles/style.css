@@ -42,3 +42,9 @@
     font-size: 110%;
     padding: 10px 20px;
 }
+
+.success {
+    border: 1px solid green;
+    padding: 10px;
+    background-color: #8dd396;
+}
