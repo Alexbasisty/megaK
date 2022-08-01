@@ -7,7 +7,7 @@ homeRouter
     .get('/', (req, res) => {
         const { sum, addons, base, allAddons, allBases } = getCookieSettings(req);
 
-        res.render('order/summary', {
+        res.render('home/index', {
             cookie: {
                 base,
                 addons,

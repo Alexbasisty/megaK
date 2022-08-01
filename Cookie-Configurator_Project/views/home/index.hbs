@@ -2,12 +2,12 @@
 
 <h2>Select your cookie base</h2>
 
-{{#each bases}}
+{{#each allBases}}
     <a href="/configurator/select-base/{{this.[0]}}" class="btn">Select {{this.[0]}} for {{this.[1]}} PLN</a>
 {{/each}}
 
 <h2>Select your favourite addons</h2>
-{{#each addons}}
+{{#each allAddons}}
     <a href="/configurator/add-addon/{{this.[0]}}" 
     class="btn {{#if (isInArray @root.cookie.addons this.[0])}}btn-disabled{{/if}}">
     Add {{this.[0]}} for {{this.[1]}} PLN</a>
