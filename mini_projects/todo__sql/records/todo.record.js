@@ -5,6 +5,7 @@ const { pool } = require('../utils/db');
 class TodoRecord {
     constructor(obj) {
         this.title = obj.title;
+        this.addedAt = obj.addedAt;
         this.id = obj.id;
 
         this._validate();
@@ -21,9 +22,10 @@ class TodoRecord {
 
     async create() {
         this.id = this.id ?? uuid();
-        await pool.execute('INSERT INTO `todos` VALUES(:id, :title)', {
+        await pool.execute('INSERT INTO `todos` VALUES(:id, :title, :addedAt)', {
             id: this.id,
             title: this.title,
+            addedAt: new Date(),
         });
 
         return this.id;
@@ -54,12 +56,10 @@ class TodoRecord {
     }
 
     static async find(id) {
-        const [results] = (await pool.execute('SELECT * FROM `todos` WHERE `id` = :id', {
+        const [results] = await pool.execute('SELECT * FROM `todos` WHERE `id` = :id', {
             id,
-        }))[0];
-        return results;
-
-        // return results.length === 1 ? new TodoRecord(results[0]) : null;
+        });
+        return results.length === 1 ? new TodoRecord(results[0]) : null;
     }
 
     static async findAll() {

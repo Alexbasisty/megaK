@@ -22,7 +22,7 @@
             </td>
             <td>
                 <a href="/todo/{{this.id}}">Szczegóły</a>
-                <form method="DELETE" action="/client/{{this.id}}">
+                <form method="POST" action="/todo/{{this.id}}?_method=DELETE">
                     <button type="submit">Usuń</button>
                 </form>
             </td>
@@ -30,3 +30,13 @@
         {{/each}}
     </tbody>
 </table>
+
+<h3>Dodawanie nowego zadania</h3>
+
+<form method="post" action="/todo">
+    <label>
+        <p>Wpisz zadanie</p>
+        <p><textarea type="text" name="title"></textarea></p>
+    </label>
+    <button type="submit">Dodaj zadanie</button>
+</form>

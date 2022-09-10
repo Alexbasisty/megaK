@@ -8,7 +8,7 @@ const { pool } = require('./utils/db');
 
 const app = express();
 
-app.use(methodOverride());
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({
     extended: true,
 }));

@@ -1,0 +1,9 @@
+<h2>Edytujesz zadanie o id <small>{{todo.id}}</small></h2>
+<form method="POST" action="/todo/{{todo.id}}/?_method=PUT">
+    <label>
+        <p>
+            <textarea type="text" name="title">{{todo.title}}</textarea>
+        </p>
+    </label>
+    <button type="submit">Edytuj</button>
+</form>

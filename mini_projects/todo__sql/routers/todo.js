@@ -15,14 +15,35 @@ todoRouter
             todo: await TodoRecord.find(req.params.id),
         });
     })
+    .get('/form/edit/:id', async (req, res) => {
+        res.render('todo/forms/edit', {
+            todo: await TodoRecord.find(req.params.id),
+        });
+    })
     .post('/', async (req, res) => {
-        res.send('POst')
+        const newRecord = new TodoRecord({
+            title: req.body.title,
+        });
+        await newRecord.create();
+
+        res.render('todo/added', {
+            title: req.body.title,
+            id: newRecord.id,
+        });
     })
     .put('/:id', async (req, res) => {
-        res.send('Put')
+        const todoToChange = await TodoRecord.find(req.params.id);
+        todoToChange.title = req.body.title;
+        todoToChange.update();
+        res.render('todo/modified', {
+            id: req.params.id,
+        });
     })
     .delete('/:id', async (req, res) => {
-        res.send('Delete')
+        const recordToDelete = await TodoRecord.find(req.params.id);
+        await recordToDelete.delete();
+
+        res.render('todo/deleted');
     });
 
 module.exports = {
