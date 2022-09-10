@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const { v4: uuid } = require('uuid');
-const { pool } = require("../utils/db");
+const { pool } = require('../utils/db');
 
 class TodoRecord {
     constructor(obj) {
@@ -19,7 +19,7 @@ class TodoRecord {
         }
     }
 
-    async insert() {
+    async create() {
         this.id = this.id ?? uuid();
         await pool.execute('INSERT INTO `todos` VALUES(:id, :title)', {
             id: this.id,
@@ -54,15 +54,17 @@ class TodoRecord {
     }
 
     static async find(id) {
-        const [results] = await pool.execute('SELECT * FROM `todos` WHERE `id` = :id', {
+        const [results] = (await pool.execute('SELECT * FROM `todos` WHERE `id` = :id', {
             id,
-        });
+        }))[0];
+        return results;
 
-        return results.length === 1 ? new TodoRecord(results[0]) : null;
+        // return results.length === 1 ? new TodoRecord(results[0]) : null;
     }
 
     static async findAll() {
-        return pool.execute('SELECT * FROM `todos`');
+        const [allRecords] = await pool.execute('SELECT * FROM `todos` ORDER BY `addedAt` ASC');
+        return allRecords;
     }
 }
 

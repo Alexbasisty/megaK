@@ -1,0 +1,32 @@
+<h2>Lista zadań</h2>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Tytuł
+            </th>
+            <th>
+                Data dodania
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each todos}}
+        <tr>
+            <th>
+                <a href="/todo/{{this.id}}">{{this.title}}</a>
+            </th>
+            <td>
+                {{this.addedAt}}
+            </td>
+            <td>
+                <a href="/todo/{{this.id}}">Szczegóły</a>
+                <form method="DELETE" action="/client/{{this.id}}">
+                    <button type="submit">Usuń</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
