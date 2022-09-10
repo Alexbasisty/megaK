@@ -1,11 +1,33 @@
-const { TodoRecord } = require("./records/todo.record");
-const { pool } = require("./utils/db");
+const express = require('express');
+const hbs = require('express-handlebars');
+const { TodoRecord } = require('./records/todo.record');
+const { todoRouter } = require('./routers/todo');
+const { pool } = require('./utils/db');
 
-(async () => {
-    const foundTodo = await TodoRecord.find('feed498f-097c-4606-9b6a-375b0f2f4f8d');
-    foundTodo.title = 'Zrobić update zadania';
+const app = express();
 
-    await foundTodo.update();
+app.use(express.urlencoded({
+    extended: true,
+}));
+app.use(express.static('public'));
+app.use(express.json());
 
-    await pool.end();
-})();
+app.engine('.hbs', hbs.engine({
+    extname: '.hbs',
+    //helpers: handlebarsHelpers,
+}));
+app.set('view engine', '.hbs');
+
+app.use('/todo', todoRouter);
+
+app.listen(3000, 'localhost', () => {
+    console.log('Listening on localhost:3000');
+});
+
+// (async () => {
+//     const [allRecords] = await TodoRecord.findAll();
+
+//     console.log(allRecords);
+
+//     await pool.end();
+// })();

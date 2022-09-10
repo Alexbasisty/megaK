@@ -60,6 +60,10 @@ class TodoRecord {
 
         return results.length === 1 ? new TodoRecord(results[0]) : null;
     }
+
+    static async findAll() {
+        return pool.execute('SELECT * FROM `todos`');
+    }
 }
 
 module.exports = {
