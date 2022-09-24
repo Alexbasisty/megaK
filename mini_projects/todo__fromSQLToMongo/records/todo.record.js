@@ -1,7 +1,9 @@
 /* eslint-disable no-underscore-dangle */
+const { ObjectId } = require('mongodb');
+
 class TodoRecord {
     constructor(obj) {
-        this.id = obj.id;
+        this._id = ObjectId(obj._id);
         this.title = obj.title;
 
         this._validate();
