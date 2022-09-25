@@ -1,0 +1,22 @@
+<h2>Lista presentów</h2>
+
+<ul>
+    {{#each giftsList}}
+    <li>
+        {{this.name}} ({{this.count}} szt.)
+    </li>
+    {{/each}}
+</ul>
+
+<h3>Dodaj prezent do listy</h3>
+<form action="">
+    <label>
+        Nazwa
+        <input name="name" type="text">
+    </label>
+    <label>
+        Ilość [szt.]
+        <input name="count" type="number">
+    </label>
+    <button>Dodaj</button>
+</form>
