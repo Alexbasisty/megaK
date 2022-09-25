@@ -44,6 +44,10 @@ class TodoRecord {
         return (await todos.find().toArray()).map((obj) => new TodoRecord(obj));
     }
 
+    static async findAllWithCursor() {
+        return todos.find();
+    }
+
     async update() {
         await todos.replaceOne({
             _id: this._id,

@@ -3,9 +3,13 @@ const { client } = require('./utils/db');
 
 (async () => {
     try {
-        const todo = await TodoRecord.find('632ef77829fbc206e5a3d9d6');
-
-        console.log(todo);
+        // eslint-disable-next-line no-restricted-syntax
+        for await (const todo of await TodoRecord.findAllWithCursor()) {
+            const record = new TodoRecord(todo);
+            record.title += ' [updated]';
+            await record.update();
+            console.log(record);
+        }
     } finally {
         await client.close();
     }
