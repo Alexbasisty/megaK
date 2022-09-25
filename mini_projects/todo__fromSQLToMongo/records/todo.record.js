@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const { ObjectId } = require('mongodb');
+const { todos } = require('../utils/db');
 
 class TodoRecord {
     constructor(obj) {
@@ -17,18 +18,15 @@ class TodoRecord {
             throw new Error('Todo title should be at most 150 characters');
         }
     }
-    static async insert(record) {
-        TodoRepository._checkRecord(record);
 
+    async insert() {
         const { insertedId } = await todos.insertOne(record);
         record._id = insertedId;
 
         return insertedId;
     }
 
-    static async delete(record) {
-        TodoRepository._checkRecord(record);
-
+    async delete() {
         await todos.deleteOne({
             _id: record._id,
         });
@@ -41,12 +39,10 @@ class TodoRecord {
     }
 
     static async findAll() {
-        return todos.find().toArray();
+        return (await (todos.find().toArray())).map((obj) => new TodoRecord(obj));
     }
 
-    static async update(record) {
-        TodoRepository._checkRecord(record);
-
+    async update() {
         await todos.replaceOne({
             _id: record._id,
         }, {
