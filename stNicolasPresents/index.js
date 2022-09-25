@@ -18,11 +18,15 @@ app.engine('.hbs', engine({
 app.set('view engine', '.hbs');
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello, World</h1>');
+    res.redirect('/children');
+});
+
+app.get('/children', (req, res) => {
+    res.render('children/list');
 });
 
 app.use(handleError);
 
 app.listen(3000, 'localhost', () => {
-    console.log('Działa serwer na localhost:3000');
+    console.log('Działa serwer na http://localhost:3000');
 });
