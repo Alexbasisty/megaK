@@ -1,3 +1,3 @@
 const abc: string = 'Hello!';
 
-const d: number = 45;
+console.log(abc);
