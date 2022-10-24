@@ -6,6 +6,8 @@
         "target": "es6",
         "downlevelIteration": true,
         "lib": ["DOM", "ES6", "DOM.Iterable"],
-        "outDir": "dist"
+        "outDir": "dist",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     }
 }
