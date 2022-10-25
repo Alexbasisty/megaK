@@ -1,4 +1,4 @@
-const { Restaurant } = require('./restaurant');
+import { Restaurant } from "./restaurant";
 
 const megaRestaurant = new Restaurant();
 let tablesCount = 25;
