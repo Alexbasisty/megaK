@@ -1,18 +1,19 @@
 import {EventEmitter} from "events";
+import { RestaurantEventName } from "./types/restaurant-events";
 
 export class Restaurant extends EventEmitter {
     /**
      * Otwarcie restauracji.
      */
     open() {
-        this.emit('open');
+        this.emit(RestaurantEventName.Open);
     }
 
     /**
      * Zamknięcie restauracji.
      */
     close() {
-        this.emit('close');
+        this.emit(RestaurantEventName.Close);
     }
 
     /**
@@ -20,7 +21,7 @@ export class Restaurant extends EventEmitter {
      * Traktuj to jako po prostu 1 stolik mniej.
      */
     reserveTable() {
-        this.emit('tableCountUpdate', -1);
+        this.emit(RestaurantEventName.TableCountUpdate, -1);
     }
 
     /**
@@ -28,27 +29,27 @@ export class Restaurant extends EventEmitter {
      * Traktuj to jako po prostu 1 stolik więcej.
      */
     cancelTableReservation() {
-        this.emit('tableCountUpdate', 1);
+        this.emit(RestaurantEventName.TableCountUpdate, 1);
     }
 
     /**
      * Ktoś wziął stolik bez rezerwacji.
      */
     takeTableWithoutReservation() {
-        this.emit('tableCountUpdate', -1);
+        this.emit(RestaurantEventName.TableCountUpdate, -1);
     }
 
     /**
      * Stolik się popsuł, odpadła noga :/
      */
     markTableAsBroken() {
-        this.emit('tableCountUpdate', -1);
+        this.emit(RestaurantEventName.TableCountUpdate, -1);
     }
 
     /**
      * Ktoś skończył jeść, czyścimy stolik i wraca do użytku.
      */
     cleanupTable() {
-        this.emit('tableCountUpdate', 1);
+        this.emit(RestaurantEventName.TableCountUpdate, 1);
     }
 };
