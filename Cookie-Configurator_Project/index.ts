@@ -15,7 +15,7 @@ export class CookieMakerApp {
         COOKIE_BASES,
         COOKIE_ADDONS,
     };
-    private routes = [HomeRouter, ConfiguratorRouter];
+    private readonly routes = [HomeRouter, ConfiguratorRouter, OrderRouter];
 
     constructor() {
         this._configureApp();
