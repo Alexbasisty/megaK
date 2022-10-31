@@ -1,22 +1,12 @@
 import { Request, Response, Router } from 'express';
-import { CookieMakerApp } from '..';
+import { get } from '../decorators/rest.decorator';
 import { MyRoute } from '../types/my-route';
+import { BaseRouter } from './base';
 
-export class ConfiguratorRouter implements MyRoute{
+export class ConfiguratorRouter extends BaseRouter implements MyRoute{
     public readonly urlPrefix = '/configurator';
-    public readonly router: Router = Router();
 
-    constructor(private cmapp: CookieMakerApp) {
-        this.cmapp = cmapp;
-        this.setUpRoutes();
-    }
-
-    private setUpRoutes(): void {
-        this.router.get('/select-base/:baseName', this.selectBase);
-        this.router.get('/add-addon/:addonName', this.addAddon);
-        this.router.get('/delete-addon/:addonName', this.deleteAddon);
-    }
-
+    @get('/select-base/:baseName')
     private selectBase = (req: Request, res: Response): void => {
         const { baseName } = req.params;
 
@@ -31,6 +21,7 @@ export class ConfiguratorRouter implements MyRoute{
             });
     };
 
+    @get('/add-addon/:addonName')
     private addAddon = (req: Request, res: Response): void => {
         const { addonName } = req.params;
 
@@ -53,6 +44,7 @@ export class ConfiguratorRouter implements MyRoute{
             });
     };
 
+    @get('/delete-addon/:addonName')
     private deleteAddon = (req: Request, res: Response): void => {
         const { addonName } = req.params;
 
