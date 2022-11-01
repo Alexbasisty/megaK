@@ -1,12 +1,8 @@
-const { Router } = require('express');
+import { Router } from 'express';
 
-const homeRouter = Router();
+export const homeRouter = Router();
 
 homeRouter
     .get('/', (req, res) => {
         res.redirect('/child');
     });
-
-module.exports = {
-    homeRouter,
-}
