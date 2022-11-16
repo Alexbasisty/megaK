@@ -21,6 +21,9 @@ warriorRouter
             stamina: Number(stamina),
             agility: Number(agility),
         });
-        res.render('warrior/added');
-        await warrior.insert();
+        const id = await warrior.insert();
+        res.render('warrior/added', {
+            id,
+            name,
+        });
     });
