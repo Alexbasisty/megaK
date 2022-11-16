@@ -16,7 +16,7 @@ export class WarriorRecord {
 
     constructor(obj: Omit<WarriorRecord, 'insert' | 'update'>) {
         const {id, name, power, defence, stamina, agility, wins} = obj;
-        const stats = [power, defence, stamina, agility, wins];
+        const stats = [power, defence, stamina, agility];
         const sum = stats.reduce((prev, curr) => prev + curr, 0);
 
         for (const stat of stats) {
@@ -78,5 +78,12 @@ export class WarriorRecord {
             topCount,
         }) as WarriorRecordResults;
         return results.map(obj => new WarriorRecord(obj));
+    }
+
+    static async isNameTaken(name: string): Promise<boolean> {
+        const [results] = await pool.execute("SELECT * FROM `warriors` WHERE `name` = :name", {
+            name,
+        }) as WarriorRecordResults;
+        return results.length > 0;
     }
 }
