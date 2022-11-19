@@ -65,7 +65,7 @@ export class WarriorRecord {
         const [results] = await pool.execute("SELECT * FROM `warriors` WHERE `id` = :id", {
             id,
         }) as WarriorRecordResults;
-        return results.length === 0 ? null : results[0];
+        return results.length === 0 ? null : new WarriorRecord(results[0]);
     }
 
     static async listAll(): Promise<WarriorRecord[]> {
