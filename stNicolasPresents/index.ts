@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import 'express-async-errors';
 import * as methodOverride from 'method-override';
 import { engine } from 'express-handlebars';
@@ -11,17 +12,21 @@ import './utils/db';
 
 const app = express();
 
-app.use(methodOverride('_method'));
-app.use(express.urlencoded({
-    extended: true,
+app.use(cors({
+    origin: 'http://localhost:3000',
 }));
-app.use(express.static('public'));
-// app.use(express.json());
-app.engine('.hbs', engine({
-    extname: '.hbs',
-    helpers: handlebarsHelpers,
-}));
-app.set('view engine', '.hbs');
+
+// app.use(methodOverride('_method'));
+// app.use(express.urlencoded({
+//     extended: true,
+// }));
+// app.use(express.static('public'));
+app.use(express.json());
+// app.engine('.hbs', engine({
+//     extname: '.hbs',
+//     helpers: handlebarsHelpers,
+// }));
+// app.set('view engine', '.hbs');
 
 app.use('/', homeRouter);
 app.use('/child', childRouter);
