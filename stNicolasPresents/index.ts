@@ -29,6 +29,6 @@ app.use('/gift', giftRouter);
 
 app.use(handleError);
 
-app.listen(3000, 'localhost', () => {
-    console.log('Działa serwer na http://localhost:3000');
+app.listen(3001, 'localhost', () => {
+    console.log('Działa serwer na http://localhost:3001');
 });
