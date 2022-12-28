@@ -12,7 +12,7 @@ giftRouter
         });
     })
 
-    .delete(':id', async (req, res) => {
+    .delete('/:id', async (req, res) => {
         const gift = await GiftRecord.getOne(req.params.id);
 
         if(!gift) {

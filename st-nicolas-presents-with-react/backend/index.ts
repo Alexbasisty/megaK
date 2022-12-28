@@ -14,6 +14,7 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:3000',
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
 }));
 
 // app.use(methodOverride('_method'));
