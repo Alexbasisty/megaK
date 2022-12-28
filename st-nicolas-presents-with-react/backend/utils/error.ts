@@ -6,7 +6,11 @@ export const handleError = (err: Error, req: Request, res: Response, next: NextF
 
     res
         .status(err instanceof ValidationError ? 400 : 500)
-        .render('error', {
+        .json({
             message: err instanceof ValidationError ? err.message : 'Przepraszamy, sprobuj ponownie za kilka minut',
         });
+        // This part for handlebars
+        // .render('error', {
+        //     message: err instanceof ValidationError ? err.message : 'Przepraszamy, sprobuj ponownie za kilka minut',
+        // });
 }
