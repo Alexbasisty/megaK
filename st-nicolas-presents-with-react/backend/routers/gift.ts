@@ -21,8 +21,8 @@ giftRouter
         if(await gift.countGivenGifts() > 0) {
             throw new ValidationError('Canot delete, gift is being in use!')
         }
-        
-        gift.deleteOne();
+
+        await gift.deleteOne();
     })
 
     .post('/', async (req, res) => {
