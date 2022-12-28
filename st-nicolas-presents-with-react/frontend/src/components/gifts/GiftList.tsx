@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Gift } from "../../types/gifts";
+import { GiftEntity } from "types";
 import GiftsTable from "./GiftsTable";
 
 const GiftList = () => {
-    const [giftsList, setGiftsList] = useState<Gift[] | null>(null);
+    const [giftsList, setGiftsList] = useState<GiftEntity[] | null>(null);
 
     useEffect(() => {
         (async () => {

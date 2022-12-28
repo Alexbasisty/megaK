@@ -1,8 +1,8 @@
 import React from "react";
-import { Gift } from "../../types/gifts";
+import { GiftEntity } from "types";
 
 interface Props {
-    gift: Gift;
+    gift: GiftEntity;
 }
 
 const GiftsTableRow = (props: Props) => (
