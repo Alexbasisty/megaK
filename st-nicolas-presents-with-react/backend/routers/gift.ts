@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { GiftRecord } from '../records/gift.record';
+import { CreateGiftReq } from '../types';
 import { ValidationError } from '../utils/error';
 
 export const giftRouter = Router();
@@ -32,7 +33,7 @@ giftRouter
         // }
 
         // const newGift = new GiftRecord(data);
-        const newGift = new GiftRecord(req.body);
+        const newGift = new GiftRecord(req.body as CreateGiftReq);
         await newGift.insert();
 
         // res.redirect('/gift');
