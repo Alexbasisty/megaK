@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { GiftEntity } from "types";
+import Spinner from "../common/Spinner/Spinner";
 import GiftsTable from "./GiftsTable";
 
 const GiftList = () => {
@@ -19,7 +20,7 @@ const GiftList = () => {
     }, []);
     
     if (giftsList === null) {
-        return <p>Loading...</p>
+        return <Spinner />
     }
 
     return (
