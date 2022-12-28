@@ -1,11 +1,11 @@
 import React from 'react';
-import GiftList from './components/gifts/GiftList';
+import GiftsView from './views/GiftsView';
 
 
 const App = () => {
   return (
     <>
-      <GiftList />
+      <GiftsView />
     </>
   );
 }
