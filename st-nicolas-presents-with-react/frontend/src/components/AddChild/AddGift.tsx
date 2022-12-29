@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { CreateGiftReq, GiftEntity } from 'types';
 import Spinner from '../common/Spinner/Spinner';
 
-const AddChild = () => {
+const AddGift = () => {
     const [form, setForm] = useState<CreateGiftReq>({
         name: '',
         count: 0,
@@ -56,7 +56,7 @@ const AddChild = () => {
                 <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} />
             </label><br />
             <label>
-                Count: <br />
+                Name: <br />
                 <input type="number" value={form.count} onChange={e => updateForm('count', e.target.value)} />
             </label><br />
             <button type="submit">Add</button>
@@ -64,4 +64,4 @@ const AddChild = () => {
     );
 };
 
-export default AddChild;
+export default AddGift;
