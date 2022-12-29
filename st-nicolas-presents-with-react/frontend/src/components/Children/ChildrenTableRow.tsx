@@ -13,7 +13,7 @@ const ChildrenTableRow = (props: Props) => {
         <tr>
             <th>{props.child.name}</th>
             <td>
-                <ChilGiftSelect giftsList={props.giftsList} selectedId={props.child.giftId} />
+                <ChilGiftSelect giftsList={props.giftsList} selectedId={props.child.giftId} childId={props.child.id as string} />
             </td>
         </tr>
     );
