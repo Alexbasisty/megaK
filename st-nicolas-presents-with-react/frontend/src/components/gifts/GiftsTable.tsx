@@ -11,7 +11,6 @@ const GiftsTable = (props: Props) => (
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Count</th>
                 <th>Action</th>

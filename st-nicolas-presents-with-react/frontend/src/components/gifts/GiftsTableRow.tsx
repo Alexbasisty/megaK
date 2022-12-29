@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { MouseEvent } from "react";
+import { Link } from "react-router-dom";
 import { GiftEntity } from "types";
 
 interface Props {
@@ -30,8 +31,11 @@ const GiftsTableRow = (props: Props) => {
 
     return (
         <tr>
-            <th>{props.gift.id}</th>
-            <td>{props.gift.name}</td>
+            <td>
+                <Link to={`/gift/${props.gift.id}`}>
+                    {props.gift.name}
+                </Link>
+            </td>
             <td>{props.gift.count}</td>
             <td>
                 <a href="#" onClick={deleteGift}>🗑</a>
