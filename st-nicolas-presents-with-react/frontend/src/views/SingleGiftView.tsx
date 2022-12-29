@@ -14,6 +14,7 @@ const SingleGiftView = () => {
             console.log(await res.json());
             
         })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (gift === null)  return <Spinner />;
