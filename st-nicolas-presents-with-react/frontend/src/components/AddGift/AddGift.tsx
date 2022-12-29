@@ -11,7 +11,7 @@ const AddChild = () => {
     const [resultInfo, setResultInfo] = useState<string | null>(null);
 
     const updateForm = (key: string, value: string | number) => {
-        setForm(from => ({
+        setForm(form => ({
             ...form,
             [key]: value,
         }));
