@@ -5,10 +5,14 @@ import NotFoundView from './views/NotFoundView';
 
 
 const App = () => {
+  const linkColor = ({ isActive }: {
+    isActive: boolean;
+  }) => ({color: isActive ? 'green' : 'red'});
+
   return (
     <>
       <h1>Santa App</h1>
-      <NavLink to={'/gift'} style={({isActive}) => ({color: isActive ? 'green' : 'red'})}>Go to Gifts</NavLink>
+      <NavLink to={'/gift'} style={linkColor}>Go to Gifts</NavLink>
       <hr />
       <Routes>
         <Route path='/gift' element={<GiftsView />} />
