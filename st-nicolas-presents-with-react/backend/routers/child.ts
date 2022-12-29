@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { ChildRecord } from '../records/child.record';
 import { GiftRecord } from '../records/gift.record';
-import { ListChildrenRes } from '../types';
+import { CreateChildReq, ListChildrenRes, SetGiftForChildReq } from '../types';
 import { ValidationError } from '../utils/error';
 
 export const childRouter = Router();
@@ -22,7 +22,7 @@ childRouter
         // })
     })
     .post('/', async (req, res) => {
-        const newChild = new ChildRecord(req.body);
+        const newChild = new ChildRecord(req.body as CreateChildReq);
         await newChild.insert();
 
         res.json(newChild)
@@ -30,13 +30,16 @@ childRouter
         // res.redirect('/child');
     })
     .patch('/gift/:childId', async (req, res) => {
+        const { body }: {
+            body: SetGiftForChildReq;
+        } = req;
         const child = await ChildRecord.getOne(req.params.childId);
 
         if (child === null) {
             throw new ValidationError('Nie znależono dziecka z takim id')
         }
 
-        const gift = req.body.giftId === '' ? null : await GiftRecord.getOne(req.body.giftId);
+        const gift = body.giftId === '' ? null : await GiftRecord.getOne(body.giftId);
 
         if (gift) {
             if (gift.count <= await gift.countGivenGifts()) {
@@ -50,4 +53,3 @@ childRouter
         res.json(child);
         // res.redirect('/child');
     });
-    
