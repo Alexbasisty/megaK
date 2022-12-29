@@ -1,4 +1,4 @@
-import AddChild from "../components/AddGift/AddGift";
+import AddChild from "../components/AddChild/AddChild";
 import ChildrenList from "../components/Children/ChildrenList";
 
 const ChildView = () => {

@@ -1,17 +1,17 @@
 import { FormEvent, useState } from 'react';
-import { CreateGiftReq, GiftEntity } from 'types';
+import { ChildEntity, CreateChildReq } from 'types';
 import Spinner from '../common/Spinner/Spinner';
 
-const AddGift = () => {
-    const [form, setForm] = useState<CreateGiftReq>({
+const AddChild = () => {
+    const [form, setForm] = useState<CreateChildReq>({
         name: '',
-        count: 0,
+        giftId: '',
     });
     const [loading, setLoading] = useState<boolean>(false);
     const [resultInfo, setResultInfo] = useState<string | null>(null);
 
     const updateForm = (key: string, value: string | number) => {
-        setForm(from => ({
+        setForm(form => ({
             ...form,
             [key]: value,
         }));
@@ -22,7 +22,7 @@ const AddGift = () => {
         setLoading(true);
 
         try {
-            const res = await fetch(`http://localhost:3001/gift`, {
+            const res = await fetch(`http://localhost:3001/child`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,8 +30,8 @@ const AddGift = () => {
             body: JSON.stringify(form),
             });
 
-            const data: GiftEntity = await res.json();
-            setResultInfo(`${data.name} added with ID ${data.id}`);
+            const data: ChildEntity = await res.json();
+            setResultInfo(`${data.name} has been created on Santa's list`);
         } finally {
             setLoading(false);
         }        
@@ -50,18 +50,14 @@ const AddGift = () => {
 
     return (
         <form onSubmit={sendForm}>
-            <h2>Add gift</h2>
+            <h2>Add child</h2>
             <label>
                 Name: <br />
                 <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} />
-            </label><br />
-            <label>
-                Name: <br />
-                <input type="number" value={form.count} onChange={e => updateForm('count', e.target.value)} />
-            </label><br />
+            </label>
             <button type="submit">Add</button>
         </form>
     );
 };
 
-export default AddGift;
+export default AddChild;
