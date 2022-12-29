@@ -1,13 +1,18 @@
 import React from 'react';
-import AddGift from './components/AddGift/AddGift';
+import { Route, Routes } from 'react-router-dom';
 import GiftsView from './views/GiftsView';
+import NotFoundView from './views/NotFoundView';
 
 
 const App = () => {
   return (
     <>
-      <GiftsView />
-      <AddGift />
+      <h1>Santa App</h1>
+      <hr />
+      <Routes>
+        <Route path='/gift' element={<GiftsView />} />
+        <Route path='*' element={<NotFoundView />} />
+      </Routes>
     </>
   );
 }
