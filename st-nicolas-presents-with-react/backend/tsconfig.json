@@ -5,10 +5,12 @@
         "sourceMap": true,
         "target": "es6",
         "downlevelIteration": true,
-        "lib": ["DOM", "ES6", "DOM.Iterable"],
+        "module": "CommonJS",
+        "lib": ["ES6"],
         "outDir": "dist",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "moduleResolution": "Node"
+        "moduleResolution": "Node",
+        "esModuleInterop": true
     }
 }

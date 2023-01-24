@@ -1,5 +1,5 @@
-import * as express from 'express';
-import * as cors from 'cors';
+import express from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 import * as methodOverride from 'method-override';
 import { engine } from 'express-handlebars';
@@ -35,6 +35,6 @@ app.use('/gift', giftRouter);
 
 app.use(handleError);
 
-app.listen(3001, 'localhost', () => {
-    console.log('Działa serwer na http://localhost:3001');
+app.listen(3001, '0.0.0.0', () => {
+    console.log('Działa serwer na http://0.0.0.0:3001');
 });
